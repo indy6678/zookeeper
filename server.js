@@ -50,7 +50,7 @@ function filterByQuery(query, animalsArray) {
   // return the filtered results
   return filteredResults;
 }
-
+// filter the animal from the animalsArray that matches the ID entered
 function findById(id, animalsArray) {
   const result = animalsArray.filter(animal => animal.id === id)[0];
   return result;
@@ -65,6 +65,7 @@ app.get('/api/animals', (req, res) => {
   res.json(results);
 });
 
+// add route using ID fpr search
 app.get('/api/animals/:id', (req, res)=>{
   const result = findById(req.params.id, animals);
   if(result) {
@@ -72,6 +73,12 @@ app.get('/api/animals/:id', (req, res)=>{
   } else {
     res.sendStatus(404);
   }
+});
+
+app.post('/api/animals',(req, res) => {
+  // req.body is where our incoming content will be
+  console.log(req.body);
+  res.json(req.body);
 });
 
 // starts the server with a message
