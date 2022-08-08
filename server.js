@@ -102,7 +102,7 @@ app.get('/api/animals', (req, res) => {
   res.json(results);
 });
 
-// add route using ID fpr search
+// add route using ID for search
 app.get('/api/animals/:id', (req, res)=>{
   const result = findById(req.params.id, animals);
   if(result) {
