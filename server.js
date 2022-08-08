@@ -8,6 +8,8 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 // parse incoming JSON data
 app.use(express.json());
+// middleware to serve pages/files (CSS/JS) from public folder
+app.use(express.static('public'));
 const { animals } = require("./data/animals.json");
 
 // sets up a function to handle filter functionality
@@ -128,6 +130,10 @@ app.post('/api/animals',(req, res) => {
     res.json(animal);
   }
 });
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+})
 
 // starts the server with a message
 app.listen(PORT, () => {
